@@ -11,33 +11,44 @@ include ('connect.php');
 include ('debug.php');
 session_start();
 
-$postid = $_GET['postid'];
+$userid = $_GET['id'];
 
 //print_r($postid);
 
-$sql =  "DELETE FROM post where postid = '$postid'";
+$sql =  "DELETE FROM comment where userid = '$userid'";
 
-if($con->query($sql) === true){
-
-
-     $_SESSION['userdelete'] = "Delete Success Fully";
-
-    $id = $_SESSION['userid'];
-
-   // header("Location: userallpost.php", true, 301);
-
-   // $_SESSION['usertype'] = $row['usertype'];
+ if ($con->query($sql)==true)
+     echo 'delete comment success'.'<br>';
 
 
-    $sqlComment = "DELETE FROM comment where postid = '$postid'";
-    $sqlComment = $con->query($sqlComment);
+    $sqlpost = "DELETE FROM post where userid = '$userid'";
+
+
+    if ($con->query($sqlpost))
+        echo 'delete post success'.'<br>';
+
+
+$sqluserinfo = "DELETE FROM userinfo where id = '$userid'";
+
+
+    if($con->query($sqluserinfo)==true){
+
+        echo "delete user success";
+    }
+
+    else{
+
+        echo  $sqluserinfo;
+
+    }
 
 
 
-}
 
-else
-    echo  $con->error;
+
+
+
+
 
 
 

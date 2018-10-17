@@ -1,7 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: apelmahmud
- * Date: 02/04/2017
- * Time: 3:24 PM
- */
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+// remove all session variables
+session_unset();
+
+// destroy the session
+session_destroy();
+
+
+header("Location: index.php", true, 301);
+
+?>
+
+</body>
+</html>

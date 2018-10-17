@@ -35,65 +35,45 @@ include('header.php');
 
             <?php
 
-            if(isset($_SESSION['deleteflag'])){
-
-                unset($_SESSION['deleteflag']);
 
 
-                echo '<script language="javascript">';
-                echo 'alert("Delete Successfully! ")';
-                echo '</script>';
-            }
-
-            if(isset($_SESSION['postapprove'])){
-
-                unset($_SESSION['postapprove']);
-
-
-                echo '<script language="javascript">';
-                echo 'alert("Approved Successfully! ")';
-                echo '</script>';
-            }
-
-            $sql = "SELECT * FROM post where poststatus = 1";
+            $sql = "SELECT * FROM userinfo where usertype = 0";
 
             $result = $con->query($sql);
 
 
-
+            echo '<table class="table table-bordered">
+  
+                        <tr>
+                            <th>User Id</th>
+                            <th>Email</th>
+                            <th>Delete User</th>
+                         </tr>';
 
 
             while ($row = $result->fetch_assoc()){
 
-                $id = $row['postid'];
-                $img = $row['imglink'];
-
-                $img = str_replace(' ', '', $img);
-                echo  '
-
-                     <div class="col-md-4 lead"> 
+                $id = $row['id'];
+                $email = $row['email'];
 
 
-                <div class="thumbnail thumb">'
 
-                    . '
-                    <img style="height:300px;" class="img" src="img/'. $img . '">'.'
 
-                    <div class="caption">'.'
-                        <h3><del> '  . $row['discountrate']  . '% </del>'. ' Discount ' .'</h3>
-                        <h3>'.'' . $row['expire'] . ' Days left' .'</h3> 
-                        
-                     <button type="button danger" class="btn btn-danger"> 
-                        <a href="delete.php?postid=' .$id .' ">Delete</a> </button>  
-                        
+                echo '<tr>'.
 
-                    </div>
-                </div>
-            </div>
-                    
-                    ';
+                    '<td>'. $id .'</td>' .
+
+                    '<td>'. '<a href="adminuserallpost.php?id='.$id .'">'.$email.'</a>'  .'</td>'.
+                    '<td>'. '<a href="userprofiledelete.php?id='.$id .'">'.$email.'</a>'  .'</td>';
+
+                echo '</tr>';
+
+
 
             }
+
+
+            echo '</table>';
 
             ?>
         </div>

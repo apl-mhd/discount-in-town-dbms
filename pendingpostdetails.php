@@ -83,6 +83,12 @@ if(isset($_SESSION['userid'])){
                         <h4>'.'Location: ' . $row['locationname']  . '</h4>
                         <h4>'.'' . $row['expire'] . ' Days left' .'</h4>
                         <p>'.'' . $row['postdesc']  .'</p> 
+                        
+                         <button type="button" class="btn btn-success "> 
+                        <a href="delete.php?postid=' .$postid .' ">Delete</a> </button>  
+                        <button type="button" class="btn btn-danger "> 
+                        <a href="approvepost.php?postid=' .$postid .' ">Approve</a> </button>
+                    
                      
                         
      
@@ -112,132 +118,10 @@ if(isset($_SESSION['userid'])){
     </div>
 
 
-    <div class="row">
-    <div class="col-md-4 col-md-offset-2"> <!--comments read-->
 
-
-        <?php
-            $sqlSelect =  "SELECT * FROM comment
-                WHERE postid = '$postid'";
-
-            $result = $con->query($sqlSelect);
-
-           // echo $sqlSelect;
-/*
-            if ($result->num_rows >0)
-                echo 'found'*/
-
-
-            while ($row = $result->fetch_assoc()){
-
-                echo '<b>'. $row['name'].'</b>'.  ' :'. $row['comment'].'<br>';
-            }
-
-
-
-
-        ?>
-
-    </div>
    </div>
 
-    <div class="row">
 
-        <div class="col-md-4 col-md-offset-2" style="padding-top: 40px">
-
-            <form action="commentinsert.php" method="post">
-
-                <?php
-
-                //echo $row['userid'];
-
-
-            if (isset($_SESSION['userid'])) {
-
-
-                if (($postUserId == $_SESSION['userid'])) {
-
-
-                    $sqlUpdate= "UPDATE comment SET commentstatus=1 WHERE postid = '$postid' AND  commentstatus=0";
-                    $updateResult= $con->query($sqlUpdate);
-
-
-
-
-                    echo '
-                
-                <div class="form-group row">
-                    <label for="colFormLabel" class="col-sm-2 col-form-label">Comments</label>
-                    <div class="col-sm-10">
-                        <!--<input type="textarea" class="form-control" id="colFormLabel" placeholder="Comments">-->
-                        <textarea rows="4" cols="50" name="comment" class="form-control">
-                        Is this still available?
-                        </textarea>
-
-                    </div>
-                </div>';
-                } else {
-
-                    echo '
-
-                <div class="form-group row">
-                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Name:</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Name">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="colFormLabel" class="col-sm-2 col-form-label">Comments : </label>
-                    <div class="col-sm-10">
-                        <!--<input type="textarea" class="form-control" id="colFormLabel" placeholder="Comments">-->
-                        <textarea rows="4" cols="50" name="comment" class="form-control">
-                        Is this still available?
-                        </textarea>
-
-                    </div>
-                </div>';
-
-                }
-            }
-
-            else{
-
-               echo '
-                
-               
-
-                <div class="form-group row">
-                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Name:</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Name">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="colFormLabel" class="col-sm-2 col-form-label">Comments</label>
-                    <div class="col-sm-10">
-                        <!--<input type="textarea" class="form-control" id="colFormLabel" placeholder="Comments">-->
-                        <textarea rows="4" cols="50" name="comment" class="form-control">
-                        Is this still available?
-                        </textarea>
-
-                    </div>
-                </div>';
-
-
-
-            }
-
-                ?>
-
-                <input type="submit" class="btn col-md-offset-3 btn-primary mb-2" value="Submit">
-
-            </form>
-
-        </div>
-
-    </div>
 
 
 

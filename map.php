@@ -14,13 +14,16 @@
         
         
         <div style="padding:10px">
-            <div id="map"></div>
+            <div style="height: 300px; width: 600px;" id="map">
+
+            </div>
         </div>
 
 
 
         <?php
-            echo 'dsaf;akldjfkadsjfkadja';
+
+            $lat =23.746466;
          ?>
 
 
@@ -30,7 +33,7 @@
         var map;
         
         function initMap() {                            
-            var latitude = 23.746466; 
+            var latitude = <?php echo $lat?> ;
             var longitude = 90.376015; 
             
             var myLatLng = {lat: latitude, lng: longitude};
@@ -40,11 +43,7 @@
               zoom: 14,
               disableDoubleClickZoom: true, // disable the default map zoom on double click
             });
-            
-         
 
-            
-     
         }
         </script> 
 

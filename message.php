@@ -8,6 +8,7 @@
 
 include('connect.php');
 include('header.php');
+//print_r($_SESSION);
 
 ?>
 
@@ -22,42 +23,74 @@ include('header.php');
     <?php include('usersidebar.php') ?>
 
 
-    <!--    <div class="leftadmin">
-            <div class="adminmenu">
-                <ul class="menuouter">
-                    <li><a href="aboutme.php">About Me</a> </li>
-                    <li><a href="updateaccount.php">Update Account</a> </li>
-                    <li><a href="userallpost.php">My All Post</a> </li>
-                    <li><a href="#">Reaply</a></li>
-                    <li><a href="#">My Post Statistic</a></li>
-                </ul>
-            </div>
-        </div>-->
+
 
     <div class="container-fluid admincontent bgg">
         <div class="row">
             <?php
 
-          // print_r($_SESSION);
+            // print_r($_SESSION);
+
 
             $userId = $_SESSION['userid'];
 
-            $sql = "SELECT * FROM post where userid = '$userId' AND  poststatus = 0 ";
+
+
+            $sqlPost = "SELECT * FROM post where userid = '$userId' AND  poststatus = 1";
+
+            $result = $con->query($sqlPost);
+            $postArr = array(-1,-2,-3);
+
+
+            while ($row1 = $result->fetch_assoc()){
+
+                array_push($postArr, $row1['postid']);
+
+
+            }
+
+            //print_r($postArr);
+
+            $postIn = join(",", $postArr);
+          //  print_r($postIn);
+
+
+
+
+
+
+
+
+            //$sql = "SELECT * FROM comment where userid = '$userId' AND  comentstatus = 0 ";
+            $sql = "SELECT * FROM comment where  postid  in ($postIn)  and commentstatus = 0 ";
+            //echo $sql;
 
             $result = $con->query($sql);
 
 
 
-
-
-
             while ($row = $result->fetch_assoc()){
 
+                $comment = $row['comment'];
+                $postid = $row['postid'];
 
-                $id = $row['postid'];
-                $img = $row['imglink'];
+                //echo $comment;
+               // echo $postid;
 
-                $img = str_replace(' ', '', $img);
+
+                //echo $postid;
+
+
+
+               echo '<div class="alert alert-danger"  role="alert">';
+                echo '<a class="alert alert-primary"  href='."postdetails.php?postid=".$postid.'>'.  $comment .' </a>'.'<br>';
+                echo '</div>';
+/*
+                $id = $row['id'];
+                $postid = $row['postid'];
+
+
+
                 echo  '
 
                      <div class="col-md-4 lead"> 
@@ -66,12 +99,7 @@ include('header.php');
                 <div class="thumbnail thumb">'
 
                     . '
-                    <img style="height:300px;" class="img" src="img/'. $img . '">'.'
-
-                    <div class="caption">'.'
-                        <h3><del> '  . $row['discountrate']  . '% </del>'. ' Discount ' .'</h3>
-                        <h3>'.'' . $row['expire'] . ' Days left' .'</h3> 
-                     <button type="button" class="btn btn-success "> 
+                     
                         <a href="updatepost.php?postid=' .$id .' ">Update </a> </button>  
                         <button type="button" class="btn btn-danger "> 
                         <a href="delete.php?postid=' .$id .' ">Delete</a> </button>  
@@ -81,14 +109,12 @@ include('header.php');
                 </div>
             </div>
                     
-                    ';
+                    ';*/
 
             }
 
             if ($result->num_rows==0) {
-                echo "<script language='javascript' type='text/javascript'>";
-                echo "alert('No Pending Post Found!');";
-                echo "</script>";
+
 
 
             }

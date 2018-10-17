@@ -26,7 +26,7 @@ include('header.php');
 
           // print_r($_SESSION);
 
-            $userId = $_SESSION['userid'];
+            $userId = $_GET['id'];
 
             $sql = "SELECT * FROM post where userid = '$userId'";
 
@@ -41,6 +41,8 @@ include('header.php');
 
                 $id = $row['postid'];
                 $img = $row['imglink'];
+                $poststatus = $row['poststatus'];
+               // echo $poststatus;
 
                 $img = str_replace(' ', '', $img);
                 echo  '
@@ -58,8 +60,23 @@ include('header.php');
                         <h3>'.'' . $row['expire'] . ' Days left' .'</h3> 
                      
                         <button type="button" class="btn btn-danger "> 
-                        <a href="userdeletepost.php?postid=' .$id .' ">Delete</a> </button>  
+                        <a href="userdeletepost.php?postid=' .$id .' ">Delete</a> </button>';
 
+
+                        if($poststatus = 0){
+
+                            echo '
+                        
+                        <button type="button" class="btn btn-success "> 
+                        <a href="userdeletepost.php?postid=' .$id .' ">Approve</a> </button> ';
+                        }
+
+
+
+
+
+                        echo '
+                        
 
                     </div>
                 </div>

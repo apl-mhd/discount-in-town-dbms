@@ -35,7 +35,7 @@ $date = date('Y-m-d');
 
 $sql = "INSERT INTO userinfo(firstname, lastname, email, pass, phone,regdate)
 
-                             values (' ".$fname."', ' ".$lname."',' ".$email."', ' ".$pass."', ' ".$phone." ' , ' ".$date." ')";
+                             values (' ".$fname."', ' ".$lname."','".$email."', '".$pass."', ' ".$phone." ' , ' ".$date." ')";
 /*
 $sql = "INSERT INTO userinfo(firstname, lastname, email, pass, phone)
 
@@ -72,6 +72,12 @@ $sql = "INSERT INTO userinfo('firstname', 'lastname','email', 'pass', 'phone', '
 INSERT INTO `userinfo`(`id`, `firstname`, `lastname`, `email`, `pass`, `phone`, `usertype`)
 VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7])*/
 
+
+
+?>
+
+<?php
+$conn->close();
 
 
 ?>

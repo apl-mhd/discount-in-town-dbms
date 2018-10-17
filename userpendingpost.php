@@ -42,9 +42,10 @@ include('header.php');
 
             $userId = $_SESSION['userid'];
 
-            $sql = "SELECT * FROM post where userid = '$userId'";
+            $sql = "SELECT * FROM post where userid = '$userId' AND  poststatus = 0 ";
 
             $result = $con->query($sql);
+
 
 
 
@@ -84,6 +85,14 @@ include('header.php');
 
             }
 
+            if ($result->num_rows==0) {
+                echo "<script language='javascript' type='text/javascript'>";
+                echo "alert('No Pending Post Found!');";
+                echo "</script>";
+
+
+            }
+
             ?>
         </div>
     </div>
@@ -95,32 +104,6 @@ include('header.php');
 
 
 <script>
-
-    /*
-
-        $(document).ready(function () {
-
-            $("h2").click(function () {
-
-                $(".leftsidebar").animate({
-                    width : 'toggle'
-                });
-                $("h2").hide();
-
-            });
-
-            $(".close").click(function () {
-                $(".leftsidebar").animate({
-                    width : 'toggle',
-
-                });
-                $("h2").show();
-
-            })
-
-        });
-    */
-
 </script>
 
 </body>

@@ -13,35 +13,34 @@ session_start();
 
 $postid = $_GET['postid'];
 
-print_r($postid);
+//print_r($postid);
 
 $sql =  "DELETE FROM post where postid = '$postid'";
 
 if($con->query($sql) === true){
 
 
-     $_SESSION['deleteflag'] = "Delete Success Fully";
+     //$_SESSION['userdelete'] = "Delete Success Fully";
 
-    $id = $_SESSION['userid'];
+    //$id = $_SESSION['userid'];
+
+   // header("Location: userallpost.php", true, 301);
 
    // $_SESSION['usertype'] = $row['usertype'];
 
-    if($_SESSION['usertype'] = 1) {
 
-        $countsql = "SELECT count(*) FROM post WHERE userid ='$id' and  poststatus='0' ";
-    }
-    else{
-        $countsql = "SELECT count(*) FROM post WHERE userid ='$id' ";
-    }
+    $sqlComment = "DELETE FROM comment where postid = '$postid'";
+    $sqlComment = $con->query($sqlComment);
 
 
-    $countResult = $con->query($countsql);
-    $countRow = $countResult->fetch_assoc();
 
-    // print_r($countRow);
 
-    // echo $countRow['count(*)'];
-    $_SESSION['usertotalpost'] = $countRow['count(*)'];
+
+    /*echo "<script language='javascript' type='text/javascript'>";
+    echo "alert('Delete successfully');";
+    echo "</script>";*/
+
+
 
 
 }
@@ -50,6 +49,9 @@ else
     echo  $con->error;
 
 
+
+
+/*
 if($_SESSION['usertype']==1) {
 
     header("Location: adminpanel.php", true, 301);
@@ -58,7 +60,7 @@ else{
 
     header("Location: userallpost.php", true, 301);
 
-}
+}*/
 
 
 

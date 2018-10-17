@@ -1,5 +1,6 @@
-{
+*{
     font-family: sans-serif;
+list-style: none;
 }
 
 .bgb{
@@ -16,13 +17,35 @@
 
     padding-top: 50px;
 }
+.leftsidebar{
+    height: 1000px;
+}
+
+
+/*nav bar*/
+.ui-menu{
+    width: 400px;
+    top: 100px;
+    position: absolute !important;
+    background-color: #ffffff !important;
+}
+
+
+
+/*left side bar*/
+
+
+.holecheckbox{
+
+    padding-left: 20px !important;
+}
 
 
 
 /*discount content section*/
 
 
-.caption, h3{
+.caption h4{
 
     color: #e74c3c;
     text-align: center;
@@ -57,7 +80,7 @@ img{
 
 
  .chekboxheding p{
-    color: #fff;
+    color: black;
     font-weight: bold;
     padding: 0;
     margin: 0;
@@ -85,8 +108,18 @@ img{
 
 }
 
+
+
+.loginpage{
+
+
+    background-color: #1abc9c;
+    height: 100vh;
+
+}
+
 .postrow{
-    padding-top: 200px;
+    padding-top: 100px;
 }
 
 .regpading{
@@ -123,5 +156,68 @@ img{
     text-decoration: underline;
 }
 
+.thumbnail >img{
+    height: 300px;
+}
+
+/*admin panel*/
+.leftadmin{
+    background: #1abc9c;
+    width: 400px;
+    height: 100vh;
+}
 
 
+
+.wrapper{
+    display: flex;
+
+    width: 100%;
+
+}
+
+.leftadmin{
+
+    width: 20%;
+
+
+}
+
+.admincontent{
+width: 100%;
+
+}
+
+
+.menuouter{
+    margin: 0;
+    padding: 0;
+}
+
+.menuouter li{
+    border-bottom: 1px solid #ffffff;
+    padding: 20px;
+
+}
+
+.menuouter li:hover{
+    background: #74b9ff;
+    cursor: grab;
+}
+
+.menuouter li a{
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.caption a{
+    color: #fff;
+}
+
+/*about me*/
+
+.aboutme h1{
+
+    display: inline;
+}
